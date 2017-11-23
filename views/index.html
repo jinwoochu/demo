@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ling-first-demo</title>
+</head>
+<script src="/jquery-3.2.1.min.js"></script>
+
+<body>
+    <h2>사용자 회원가입</h2>
+    <form id="userRegister">
+        <input type="text" placeholder="name" name="name"> <br>
+        <input type="text" placeholder="email" name="email"> <br>
+        <input type="text" placeholder="password" name="password"> <br>
+        <input type="text" placeholder="phone" name="phone"> <br>
+        <input type="text" placeholder="address" name="address"> <br>
+        <input type="button" value="register" name="register" onclick="userRegisterFunc()">
+    </form>
+    <h2>디자이너 회원가입</h2>
+    <form id="designerRegister">
+        <input type="text" placeholder="name" name="name"> <br>
+        <input type="text" placeholder="email" name="email"> <br>
+        <input type="text" placeholder="password" name="password"> <br>
+        <input type="text" placeholder="phone" name="phone"> <br>
+        <input type="text" placeholder="address" name="address"> <br>
+        <input type="button" value="register" name="register" onclick="designerRegisterFunc()">
+    </form>
+    <h2>공장주인 회원가입</h2>
+    <form id="factoryOwnerRegister">
+        <input type="text" placeholder="name" name="name"> <br>
+        <input type="text" placeholder="email" name="email"> <br>
+        <input type="text" placeholder="password" name="password"> <br>
+        <input type="text" placeholder="phone" name="phone"> <br>
+        <input type="text" placeholder="address" name="address"> <br>
+        <input type="button" value="register" name="register" onclick="factoryOwnerRegisterFunc()">
+    </form>
+
+    <h2>로그인</h2>
+    <form id="login">
+        <input type="text" placeholder="email" name="email"> <br>
+        <input type="text" placeholder="password" name="password"> <br>
+        <input type="radio" value="user" name="checkAtt" checked="checked">user
+        <input type="radio" value="designer" name="checkAtt">designer
+        <input type="radio" value="factoryOwner" name="checkAtt">factoryOwner <br>
+        <input type="button" value="login" name="login" onclick="loginFunc()">
+    </form>
+    <h2>디자인 등록</h2>
+    <form id="designRegister">
+        <input type="text" placeholder="designerEmail" name="designerEmail"> <br>
+        <input type="text" placeholder="designName" name="designName"> <br>
+        <textarea placeholder="description" name="description" cols="30" rows="10"></textarea> <br>
+        <input type="button" value="Register" name="Register" onclick="designRegisterFunc()">
+    </form>
+    <h2>주문 등록</h2>
+    <form id="orderRegister">
+        <input type="text" placeholder="designId" name="designId"> <br>
+        <input type="text" placeholder="userId" name="userId"> <br>
+        <input type="text" placeholder="expectedPrice" name="expectedPrice"> <br>
+        <input type="text" placeholder="requestNQuestion" name="requestNQuestion"> <br>
+        <input type="button" value="Register" name="Register" onclick="orderRegisterFunc()">
+    </form>
+    <h2>공장(주인) 선택</h2>
+    <form id="changeFactoryOwner">
+        <input type="text" placeholder="orderId" name="orderId"> <br>
+        <input type="text" placeholder="factoryOwnerId" name="factoryOwnerId"> <br>
+        <input type="button" value="Register" name="Register" onclick="changeFactoryOwnerFunc()">
+    </form>
+    <h2>주문 최종가격 선정</h2>
+    <form id="changeFinalPrice">
+        <input type="text" placeholder="orderId" name="orderId"> <br>
+        <input type="text" placeholder="finalPrice" name="finalPrice"> <br>
+        <input type="button" value="Register" name="Register" onclick="changeFinalPriceFunc()">
+    </form>
+    <h2>주문상태 변경</h2>
+    <form id="changeOrderState">
+        <input type="text" placeholder="orderId" name="orderId"> <br>
+        <input type="text" placeholder="state" name="state"> <br>
+        <input type="button" value="Register" name="Register" onclick="changeOrderStateFunc()">
+    </form>
+    <h2>결제 등록</h2>
+    <form id="paymentRegister">
+        <input type="text" placeholder="paymentType" name="paymentType"> <br>
+        <input type="text" placeholder="paymentAmount" name="paymentAmount"> <br>
+        <input type="text" placeholder="buyerId" name="buyerId"> <br>
+        <input type="button" value="Register" name="Register" onclick="paymentRegisterFunc()">
+    </form>
+    <h2>제조과정 등록</h2>
+    <form id="productionInfoRegister">
+        <input type="text" placeholder="factoryOwnerId" name="factoryOwnerId"> <br>
+        <input type="button" value="Register" name="Register" onclick="productionInfoRegisterFunc()">
+    </form>
+    <h2>제조과정 상태 변경</h2>
+    <form id="changeProductionState">
+        <input type="text" placeholder="productionInfoId" name="productionInfoId"> <br>
+        <input type="text" placeholder="state" name="state"> <br>
+        <input type="button" value="Register" name="Register" onclick="changeProductionStateFunc()">
+    </form>
+
+    <script>
+        // 유저 회원가입
+        function userRegisterFunc() {
+            var reqJsonData = $("#userRegister").serializeObject(); // 폼 데이터 json 형식으로 받기
+            $.ajax({
+                method: 'POST',
+                url: '/userRegister',
+                data: reqJsonData,
+                success: (res) => {
+                    console.log(res)
+                }
+            });
+        }
+
+        // 디자이너 회원가입
+        function designerRegisterFunc() {
+            var reqJsonData = $("#designerRegister").serializeObject();
+            $.ajax({
+                method: 'POST',
+                url: '/designerRegister',
+                data: reqJsonData,
+                success: (res) => {
+                    console.log(res);
+                }
+            });
+        }
+        // 공장주인 회원가입 
+        function factoryOwnerRegisterFunc() {
+            var reqJsonData = $("#factoryOwnerRegister").serializeObject();
+            $.ajax({
+                method: 'POST',
+                url: '/factoryOwnerRegister',
+                data: reqJsonData,
+                success: (res) => {
+                    console.log(res);
+                }
+            });
+        }
+
+        // 로그인
+        function loginFunc() {
+            var reqJsonData = $("#login").serializeObject();
+            $.ajax({
+                method: 'POST',
+                url: '/login',
+                data: reqJsonData,
+                success: (res) => {
+                    console.log(res);
+                }
+            });
+
+        }
+
+        function designRegisterFunc() {
+
+            var reqJsonData = $("#designRegister").serializeObject();
+            $.ajax({
+                method: 'POST',
+                url: '/designRegister',
+                data: reqJsonData,
+                success: (res) => {
+                    console.log(res);
+                }
+            });
+
+        }
+
+        function orderRegisterFunc() {
+            var reqJsonData = $("#orderRegister").serializeObject();
+            $.ajax({
+                method: 'POST',
+                url: '/orderRegister',
+                data: reqJsonData,
+                success: (res) => {
+                    console.log(res);
+                }
+            });
+        }
+
+        function changeFactoryOwnerFunc() {
+            var reqJsonData = $("#changeFactoryOwner").serializeObject();
+            $.ajax({
+                method: 'POST',
+                url: '/changeFactoryOwner',
+                data: reqJsonData,
+                success: (res) => {
+                    console.log(res);
+                }
+            });
+        }
+
+        function changeFinalPriceFunc() {
+            var reqJsonData = $("#changeFinalPrice").serializeObject();
+            $.ajax({
+                method: 'POST',
+                url: '/changeFinalPrice',
+                data: reqJsonData,
+                success: (res) => {
+                    console.log(res);
+                }
+            });
+        }
+
+        function changeOrderStateFunc() {
+            var reqJsonData = $("#changeOrderState").serializeObject();
+            $.ajax({
+                method: 'POST',
+                url: '/changeOrderState',
+                data: reqJsonData,
+                success: (res) => {
+                    console.log(res);
+                }
+            });
+        }
+
+        function paymentRegisterFunc() {
+            var reqJsonData = $("#paymentRegister").serializeObject();
+            $.ajax({
+                method: 'POST',
+                url: '/paymentRegister',
+                data: reqJsonData,
+                success: (res) => {
+                    console.log(res);
+                }
+            });
+        }
+
+        function productionInfoRegisterFunc() {
+            alert("제조과정 등록")
+        }
+
+        function changeProductionStateFunc() {
+            alert("제조과정 상태 변경")
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+{
+    "name": "design",
+    "main": "./lib/design.js"
+}

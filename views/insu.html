@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>보험 테스트</title>
+
+    <script src="/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    </form>
+    <h2>API 호출 테스트</h2>
+    <form id="apiTest">
+        <input type="button" value="call" name="call" onclick="apiTest()">
+    </form>
+
+
+</body>
+<script>
+    //api test
+    function apiTest() {
+
+        var reqJsonData = $("#apiTest").serializeObject(); // 폼 데이터 json 형식으로 받기
+        $.ajax({
+
+            // beforeSend: function(req) {
+            //     req.setRequestHeader("Accept", "text/xml");
+            // },
+            method: 'GET',
+            url: 'https://openapi.kyobo.co.kr:1443/v1.0/INS/design/guarantee',
+            data: reqJsonData,
+            success: (res) => {
+                console.log(res)
+            }
+        });
+    }
+</script>
+
+</html>

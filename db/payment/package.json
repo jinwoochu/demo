@@ -1,0 +1,4 @@
+{
+    "name": "payment",
+    "main": "./lib/payment.js"
+}
